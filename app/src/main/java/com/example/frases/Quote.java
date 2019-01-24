@@ -1,5 +1,5 @@
 package com.example.frases;
-
+//convierte del json a aqui
 public class Quote {
     int id;
     String title;
@@ -9,9 +9,6 @@ public class Quote {
     public Quote(int id) {this.id = id; }
 
     public Quote() {    }
-
-
-
 
     public int getId() {
         return id;
@@ -44,5 +41,6 @@ public class Quote {
     public void setLink(String link) {
         this.link = link;
     }
+
 
 }
