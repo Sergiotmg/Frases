@@ -12,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller implements Callback<List<Quote>> { //implemnenta llamada que se hara
-
+    //callback al encargada de espear estas respuesta ,nos fuerza poner el onResponse y el onFailure
     // en list quote
     ResponseListener listener;
 
@@ -28,23 +28,24 @@ public class Controller implements Callback<List<Quote>> { //implemnenta llamada
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
-
+        //
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         //abrimos la api
+        // que la cree con a libreria retrofit
+        QuoteAPI api = retrofit.create(QuoteAPI.class);
 
-        QuoteAPI gerritAPI = retrofit.create(QuoteAPI.class);
-
-        Call<List<Quote>> call = gerritAPI.loadQuotes();
-        call.enqueue(this);
+        Call<List<Quote>> call = api.loadQuotes();
+        call.enqueue(this);//cuando llegue esa la mostrara, se queda esperando
     }
 
     // TIENEN QUE ESTAR POR NARICES SI TENEMOS UN  Callback<List<.....>>
     @Override
     //nos da una respuesta qwue puede no ser correcta
+
     public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
         if(response.isSuccessful()) {
             //lo convert alista de cuotas
@@ -75,6 +76,7 @@ public class Controller implements Callback<List<Quote>> { //implemnenta llamada
     //no dejamos que desde aqui tenagamos acceso a tot el main activity
     //si solo necesitamos que pueda llamar a ese metodo entonces llamamosa ese metodo
 
+    //lo generamos para que luego en el main activity podamos mostrar cuando ha ido bie no mal
     interface  ResponseListener{// podria estar en otro archivo
         void onResponse(List<Quote> list);
         void onResponseFailed(String response);//solo devuelve el error

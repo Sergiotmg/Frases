@@ -5,10 +5,11 @@ public class Quote {
     String title;
     String content;
     String link;
+    //utilizamos el vacio para la JSON
+    public Quote() { }
+
     //genera el constructor vacio por DEFECTO
     public Quote(int id) {this.id = id; }
-
-    public Quote() {    }
 
     public int getId() {
         return id;

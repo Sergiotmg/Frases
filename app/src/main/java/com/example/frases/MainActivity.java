@@ -26,11 +26,14 @@ public class MainActivity extends AppCompatActivity implements Controller.Respon
 
         //txtHello =findViewById(R.id.txtHello);
 
+
+        // LO IMPORTANTE!!
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         adapter= new QuoteAdapter(this, null);
         //si getitemcount es = 0 no hace nada
         recyclerView.setAdapter(adapter);
-        //se tiene que poner para que se vea
+        //se tiene que poner para que se vea si no se ponen se vera en blanco !!!
+        // grid o stagredLayoutManager segun haga falta
         LinearLayoutManager manager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
     }
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements Controller.Respon
         //en vez de la lista de Recetas esa lista se la pasamos al adaptador y nos la
         // muestra el adapter view
         //txtHello.setText(list.get(0).getContent());
+        // si tot va bien , le decimos al dapatador que cambie los datos
         adapter.setData(list);
     }
 
